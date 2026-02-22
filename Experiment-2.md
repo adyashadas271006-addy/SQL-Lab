@@ -1,115 +1,70 @@
-<h1>DBMS Experiment 2</h1>
+# Experiment 2 – Employee Table Queries (Retrieving Data)
 
-<h2>Aim</h2>
-To perform various SELECT queries using Employee table.
-
-<h2>Question 1</h2>
-List all distinct jobs in Employee.
-
-<h3>Query</h3>
-
-sql
-SELECT DISTINCT JOB
-FROM Employee;
-
-
-<h2>Question 2</h2>
-List all information about employee in Department Number 30.
-
-<h3>Query</h3>
-
-sql
+## Query 1: List all DISTINCT jobs in Employee
+```sql
+SELECT DISTINCT job
+FROM employee;
+```
+---
+## Query 2: List all information about employees in Department 30
+```sql
+SELECT * FROM employee
+WHERE deptno = 30;
+```
+---
+## Query 3: Find department numbers with department number greater than 20
+```sql
+SELECT deptno, dname
+FROM department
+WHERE deptno > 20;
+```
+---
+## Query 4: Find all MANAGERS and CLERKS in Department 30
+```sql
+SELECT * FROM employee
+WHERE deptno = 30
+  AND job IN ('MANAGER', 'CLERK');
+```
+---
+## Query 5: List Employee name, Employee number, and department of all CLERKS
+```sql
+SELECT ename, empno, deptno
+FROM employee
+WHERE job = 'CLERK';
+```
+---
+## Queryp 6: Find all MANAGERS NOT in Department 30
+```sql
+SELECT * FROM employee
+WHERE job = 'MANAGER'
+  AND deptno <> 30;
+```
+---
+## Query 7: List employees in Department 10 who are NOT managers or clerks
+```sql
 SELECT *
-FROM Employee
-WHERE DEPTNO = 30;
-
-
-<h2>Question 3</h2>
-Find all department numbers greater than 20.
-
-<h3>Query</h3>
-
-sql
-SELECT DISTINCT DEPTNO
-FROM Employee
-WHERE DEPTNO > 20;
-
-
-<h2>Question 4</h2>
-Find all information about managers and clerks in department 30.
-
-<h3>Query</h3>
-
-sql
-SELECT *
-FROM Employee
-WHERE DEPTNO = 30
-AND JOB IN ('MANAGER', 'CLERK');
-
-
-<h2>Question 5</h2>
-List Employee name, Employee number and department of all clerks.
-
-<h3>Query</h3>
-
-sql
-SELECT ENAME, EMPNO, DEPTNO
-FROM Employee
-WHERE JOB = 'CLERK';
-
-
-<h2>Question 6</h2>
-Find all managers not in department 30.
-
-<h3>Query</h3>
-
-sql
-SELECT *
-FROM Employee
-WHERE JOB = 'MANAGER'
-AND DEPTNO != 30;
-
-
-<h2>Question 7</h2>
-List information about all Employees in department 10 who are not manager or clerks.
-
-<h3>Query</h3>
-
-sql
-SELECT *
-FROM Employee
-WHERE DEPTNO = 10
-AND JOB NOT IN ('MANAGER', 'CLERK');
-
-
-<h2>Question 8</h2>
-Find Employees and jobs earning between 1200 and 1400.
-
-<h3>Query</h3>
-
-sql
-SELECT ENAME, JOB, SAL
-FROM Employee
-WHERE SAL BETWEEN 1200 AND 1400;
-
-
-<h2>Question 9</h2>
-List Name and Department Number of employee who are clerks, analyst or salesman.
-
-<h3>Query</h3>
-
-sql
-SELECT ENAME, DEPTNO
-FROM Employee
-WHERE JOB IN ('CLERK', 'ANALYST', 'SALESMAN');
-
-
-<h2>Question 10</h2>
-List Name and Department Number of employee whose names begin with M.
-
-<h3>Query</h3>
-
-sql
-SELECT ENAME, DEPTNO
-FROM Employee
-WHERE ENAME LIKE 'M%';
+FROM employee
+WHERE deptno = 10
+  AND job NOT IN ('MANAGER', 'CLERK');
+```
+---
+## Query 8: Find employees earning between 1200 and 1400
+```sql
+SELECT ename, job, sal
+FROM employee
+WHERE sal BETWEEN 1200 AND 1400;
+```
+---
+## Query 9: List Name and Department Number of CLERKS, ANALYSTS, SALESMEN
+```sql
+SELECT ename, deptno
+FROM employee
+WHERE job IN ('CLERK', 'ANALYST', 'SALESMAN');
+```
+---
+## Query 10: List Name and Department Number of employees whose names begin with M
+```sql
+SELECT ename, deptno
+FROM employee
+WHERE ename LIKE 'M%';
+```
