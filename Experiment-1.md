@@ -1,55 +1,93 @@
+# DBMS Practical - Employee Master Table
 
-<h1 style="color:darkblue;">DBMS Experiment 1</h1>
+## Step 1: Create Department Table
+```sql
+CREATE TABLE DEPARTMENT (
+    DEPTNO INT(2) PRIMARY KEY,
+    DNAME VARCHAR(15) NOT NULL);
+```
+---
+## Step 2: Create Employee Table
+```sql
+CREATE TABLE EMPLOYEE (
+    EMPNO INT(4) PRIMARY KEY,
+    ENAME VARCHAR(20) NOT NULL,
+    JOB VARCHAR(20),
+    MGR INT(4),
+    HIREDATE DATE,
+    SAL INT(10),
+    COMM INT(7),
+    DEPTNO INT(2)
+    FOREIGN KEY (DEPTNO) REFERENCES DEPARTMENT(DEPTNO));
+```
+---
+## Step 4: Insert Values into DEPARTMENT
+```sql
+INSERT INTO DEPARTMENT VALUES (10, 'RESEARCH');
+INSERT INTO DEPARTMENT VALUES (20, 'ACCOUNTING');
+INSERT INTO DEPARTMENT VALUES (30, 'SALES');
+INSERT INTO DEPARTMENT VALUES (40, 'OPERATIONS');
 
-<h2 style="color:darkgreen;">Aim</h2>
-To perform DDL and DML operations on the Employee table as per the given queries.
+```
+---
+## Step 3: Insert Values into EMPLOYEE
+```sql
+INSERT INTO EMPLOYEE VALUES (7369,'SMITH','CLERK',7902,'1980-12-17',800,NULL,20);
 
-<h2 style="color:darkgreen;">Question 1</h2>
-Create Employee_master table with data using Employee table.
+INSERT INTO EMPLOYEE VALUES (7499,'ALLEN','SALESMAN',7698,'1981-02-20',1600,300,30);
 
-<h3>Query</h3>
+INSERT INTO EMPLOYEE VALUES (7521,'WARD','SALESMAN',7698,'1981-02-22',1250,300,30);
 
-sql
-CREATE TABLE Employee_master AS
-SELECT * FROM Employee;
+INSERT INTO EMPLOYEE VALUES (7566,'JONES','MANAGER',7839,'1981-04-02',2975,NULL,20);
 
+INSERT INTO EMPLOYEE VALUES (7654,'MARTIN','SALESMAN',7698,'1981-09-28',1250,1400,30);
 
-<h2 style="color:darkgreen;">Question 2</h2>
-Delete all records from Employee_master whose DeptNo is 10.
+INSERT INTO EMPLOYEE VALUES (7698,'BLAKE','MANAGER',7839,'1981-05-01',2850,NULL,30);
 
-<h3>Query</h3>
+INSERT INTO EMPLOYEE VALUES (7782,'CLARK','MANAGER',7839,'1981-06-09',2450,NULL,20);
 
-sql
-DELETE FROM Employee_master
+INSERT INTO EMPLOYEE VALUES (7788,'SCOTT','ANALYST',7566,'1982-12-09',3000,NULL,40);
+
+INSERT INTO EMPLOYEE VALUES (7839,'KING','PRESIDENT',NULL,'1981-11-17',5000,NULL,20);
+
+INSERT INTO EMPLOYEE VALUES (7844,'TURNER','SALESMAN',7698,'1981-09-08',1500,0,30);
+
+INSERT INTO EMPLOYEE VALUES (7876,'ADAMS','CLERK',7788,'1983-01-12',1100,NULL,20);
+
+INSERT INTO EMPLOYEE VALUES (7900,'JAMES','CLERK',7698,'1981-12-03',950,NULL,30);
+
+INSERT INTO EMPLOYEE VALUES (7902,'FORD','ANALYST',7566,'1981-12-03',3000,NULL,20);
+
+INSERT INTO EMPLOYEE VALUES (7934,'MILLER','CLERK',7782,'1982-01-23',1300,NULL,10);
+```
+---
+## Query 1: Create Employee_Master Table
+```sql
+CREATE TABLE EMPLOYEE_MASTER AS
+SELECT * FROM EMPLOYEE;
+```
+---
+## Query 2: Delete DeptNo = 10 Records
+```sql
+DELETE FROM EMPLOYEE_MASTER
 WHERE DEPTNO = 10;
-
-
-<h2 style="color:darkgreen;">Question 3</h2>
-Update 10% increase in the salary of employees belonging to DEPTNO 20 in Employee_master.
-
-<h3>Query</h3>
-
-sql
-UPDATE Employee_master
+```
+---
+## Query 3: Update Salary +10% for DeptNo = 20
+```sql
+UPDATE EMPLOYEE_MASTER
 SET SAL = SAL + (SAL * 0.10)
 WHERE DEPTNO = 20;
-
-
-<h2 style="color:darkgreen;">Question 4</h2>
-Alter the SAL column to NUMBER(10,2) in Employee_master.
-
-<h3>Query</h3>
-
-sql
-ALTER TABLE Employee_master
-MODIFY SAL NUMBER(10,2);
-
-
-<h2 style="color:darkgreen;">Question 5</h2>
-Drop Employee_master table.
-
-<h3>Query</h3>
-
-sql
-DROP TABLE Employee_master;<h1 style="color:darkblue;">
+```
+---
+## Query 4: Alter SAL Column size to (10,2)
+```sql
+ALTER TABLE EMPLOYEE_MASTER
+MODIFY SAL DECIMAL(10,2);
+```
+---
+## Query 5: Drop Employee_master table
+```sql
+DROP TABLE EMPLOYEE_MASTER;
+```
 
